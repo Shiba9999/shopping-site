@@ -1,26 +1,31 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom';
 import "./Product.css"
 import { useStateValue } from './StateProvider'
 
-function Product({id,title,image,price,rating}) {
+function Product({id,title,image,price,rating,setToast}) {
     //basket from reducer basket normally it state then initial state to basket
-
+    const history = useHistory()
     const [{basket},dispatch]=useStateValue();
     console.log("add to basket",basket);
     
     const addToBasket=()=>{
-
-        dispatch({
-            type:"ADD_TO_BASKET",
-            item:{
-                id:id,
-                title:title,
-                image:image,
-                price:price,
-               rating:rating,
-            }
-        })
-
+        const authenticatedtoken = localStorage.getItem("isSignin");
+        if(authenticatedtoken!==undefined && typeof authenticatedtoken === "string"){
+            dispatch({
+                type:"ADD_TO_BASKET",
+                item:{
+                    id:id,
+                    title:title,
+                    image:image,
+                    price:price,
+                   rating:rating,
+                }
+            })
+            setToast("added to basket!","success");
+        }else{
+            history.push("/login")
+        }
     }
     return (
         <div className="product">
@@ -38,7 +43,6 @@ function Product({id,title,image,price,rating}) {
                  {Array(rating).fill().map((_,i) =>(
                      <p>⭐</p>
                  ))}
-                 
                 </div>
             </div>
             <img  src={image} alt=""/>

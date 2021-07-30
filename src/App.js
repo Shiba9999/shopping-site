@@ -29,10 +29,10 @@ function App() {
             <Checkout/>
           </PrivateRoute>
 
-          <PrivateRoute path="/">
+          <Route path="/">
             <Header />
             <Home />
-          </PrivateRoute>
+          </Route>
 
         </Switch>
     

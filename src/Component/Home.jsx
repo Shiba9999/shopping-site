@@ -1,10 +1,13 @@
 import React from 'react'
 import "./Home.css"
 import Product from './Product'
+import useToast from './toast/Toast'
 
 function Home() {
+    const {ToastComponent, setToast} = useToast()
     return (
         <div className="home">
+            <ToastComponent/>
             <div className="home__container">
                 <img
                     className="home__image"
@@ -14,6 +17,7 @@ function Home() {
                 <div className="home__row">
 
                     <Product
+                    setToast={setToast}
                     id={1}
                     title="real me"
                     price={12,990.00}
@@ -21,6 +25,7 @@ function Home() {
                     image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfF_F7vHpNosHMR-C6GAGQyVSfyXAiirS3iQ&usqp=CAU"
                     />
                     <Product
+                    setToast={setToast}
                      id={2}
                      title="DELL Alienware Laptop"
                      price={80000.00}
@@ -32,7 +37,8 @@ function Home() {
 
                 <div className="home__row">
 
-                    <Product 
+                    <Product
+                    setToast={setToast} 
                     id={3}
                     title="Sony headphone"
                     price={6000.00}
@@ -41,13 +47,15 @@ function Home() {
                     
                     />
                     <Product
+                    setToast={setToast}
                     id={4}
                     title="The Tempest"
                     price={500}
                     rating={4}
                     image="https://images.booksense.com/images/326/249/9781984249326.jpg"
                     />
-                    <Product 
+                    <Product
+                    setToast={setToast} 
                     id={5}
                     title="Apple watch"
                     price={3000.00}
@@ -61,6 +69,7 @@ function Home() {
                 <div className="home__row">
 
                     <Product
+                    setToast={setToast}
                     id={6}
                     title="Andriod tv"
                     price={40000.00}
@@ -69,6 +78,7 @@ function Home() {
                     
                     />
                     <Product
+                    setToast={setToast}
                     id={7}
                     title="Samsung Tv"
                     price={50000.00}
