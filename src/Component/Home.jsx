@@ -4,7 +4,7 @@ import Product from './Product'
 import useToast from './toast/Toast'
 
 function Home() {
-    const {ToastComponent, setToast} = useToast()
+    const {ToastComponent, setToast} = useToast();
     return (
         <div className="home">
             <ToastComponent/>
