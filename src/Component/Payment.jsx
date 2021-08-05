@@ -8,7 +8,7 @@ import { Link, useHistory } from "react-router-dom";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "./reducer";
-import axios from "axios";
+import axios from "./axios";
 function Payment() {
     const [{basket},dispatch]=useStateValue();
     const [user,setUser]=useState("");
@@ -28,7 +28,8 @@ useEffect(()=>{
         const response=await axios({
             method:"post",
             //stripe expects the total in a currencies subunits
-            url:`/payments/create?total=${getBasketTotal(basket)}`
+            url:`/payments/create?total=${getBasketTotal(basket)*100}`
+
         });
         setClientSecret(response.data.clientSecret);
     }
@@ -37,7 +38,7 @@ useEffect(()=>{
 },[basket])
 console.log(clientSecret);
 
-   const handleSubbmit=(async(event)=>{
+   const handleSubbmit=async(event)=>{
        event.preventDefault();
        //one click block if some one click 5 times payment__priceContainer>button logic is for that
        setProcessing(true);
@@ -57,7 +58,7 @@ console.log(clientSecret);
 
     //do all the fancy stuff...
   
-   })
+   }
    const handleChange =((event)=>{
        //listen for changes in the card elements
        //and display any error as the customer types their card details

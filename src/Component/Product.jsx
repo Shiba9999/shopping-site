@@ -7,7 +7,7 @@ function Product({id,title,image,price,rating,setToast}) {
     //basket from reducer basket normally it state then initial state to basket
     const history = useHistory()
     const [{basket},dispatch]=useStateValue();
-    console.log("add to basket",basket);
+    // console.log("add to basket",basket);
     
     const addToBasket=()=>{
         const authenticatedtoken = localStorage.getItem("isSignin");

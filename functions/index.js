@@ -17,12 +17,13 @@ app.use(express.json());
 //api routes
 app.get("/",(request,response)=>response.status(200).send("hello world"))
 app.post("/payments/create",async(request,response)=>{
-
+     
+    //ita the total from payment ?total
     const total=request.query.total;
     console.log("payment request received",total);
     const paymentIntent=await stripe.paymentIntents.create({
-        amount:total,
-        currency:"rupee",
+        amount:total,//subunits of currency
+        currency:"inr",
     });
     //ok-created
     response.status(201).send({
@@ -33,5 +34,5 @@ app.post("/payments/create",async(request,response)=>{
 //listen command
 exports.api=functions.https.onRequest(app);
 
-
+//example end point
 //http://localhost:5001/shopping-site-37160/us-central1/api

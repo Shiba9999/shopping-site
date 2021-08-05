@@ -9,9 +9,8 @@ function CheckoutProduct({id,image,title,price,rating}) {
         //remove the item from basket
         dispatch({
             type:"REMOVE_FROM_BASKET",
-            id:id,
+            id:id, 
         })
-
     }
     return (
         <div className="CheckoutProduct">
