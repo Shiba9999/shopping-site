@@ -21,6 +21,11 @@ export const reducer = (state, action) => {
             };
         case "INCREASE_COUNT":
              return { ...state, count: state.count + action.payload }
+      case "EMPTY_BASKET":
+          return{
+              ...state,
+              basket:[]
+          }
       case "REMOVE_FROM_BASKET":
         //   return {
         //       ...state,

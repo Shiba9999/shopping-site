@@ -1,6 +1,6 @@
 import React, { useEffect  } from "react";
 import { useStateValue } from "./StateProvider";
-import auth from "../firebase";
+import auth, { db } from "../firebase";
 import { useState } from "react";
 import CheckoutProduct from "./CheckoutProduct";
 import "./Payment.css"
@@ -48,9 +48,19 @@ console.log(clientSecret);
            }
        }).then(({paymentIntent})=>{
            //paymentIntent =payment conformation
+
+        db.collection("users").doc(user?.uid).collection("orders").doc(paymentIntent.id).set({
+            basket:basket,
+            amount:paymentIntent.amount,
+            created:paymentIntent.created
+        })
+
            setSucceeded(true);
            setError(null)
            setProcessing(false)
+           dispatch({
+               type:"EMPTY_BASKET"
+           })
            history.replace("/orders");
 
        })

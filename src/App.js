@@ -15,6 +15,7 @@ import Login from "./Auth/Login";
 import Signup from "./Auth/Signup";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import Orders from "./Component/Orders";
 
 // import { useBasket } from './Component/ContextProvider';
 
@@ -35,6 +36,10 @@ function App() {
       <Switch>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/orders">
+        <Header />
+          <Orders/>
         </Route>
         <Route path="/signup">
           <Signup />

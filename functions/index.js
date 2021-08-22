@@ -4,6 +4,8 @@ const cors=require("cors");
 const { request, response } = require("express");
 const stripe=require("stripe")("sk_test_51JKlBXSF0fTfXzQmXiUV901ctKUxyD5yYLKNH6ka9lL3lkmx7GWRDo0uGMz4l1rRNr5iiqqK93MZqVqtfLz2tsi900dEVl56yj")
 
+
+//cmd function to run backend -> firebase emulators:start
 //API
 
 //App config
