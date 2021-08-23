@@ -21,16 +21,19 @@ function Payment() {
     const history=useHistory();
     const stripe=useStripe();
     const elements=useElements();
-
+   
+   
 
 useEffect(()=>{
     const getClientSecret=async ()=>{
         const response=await axios({
             method:"post",
             //stripe expects the total in a currencies subunits
-            url:`/payments/create?total=${getBasketTotal(basket)*100}`
+            // url:`/payments/create?total=${getBasketTotal(basket)*100}`
+            url:`https://shopping-new-server.herokuapp.com/payments/create?total=${getBasketTotal(basket)*100}`
 
         });
+        console.log(response.data.clientSecret)
         setClientSecret(response.data.clientSecret);
     }
     getClientSecret();
@@ -45,6 +48,7 @@ console.log(clientSecret);
        const payload=await stripe.confirmCardPayment(clientSecret,{
            payment_method:{
                card:elements.getElement(CardElement)
+           
            }
        }).then(({paymentIntent})=>{
            //paymentIntent =payment conformation
@@ -131,7 +135,9 @@ console.log(clientSecret);
         {/* payment method */}
         <div className="payment__section">
             <div className="payment__title">
-                <h3>Payment Method</h3>
+                <h3 onClick={()=>{
+                    axios.get("http://localhost:8080/home")
+                }}>Payment Method</h3>
             </div>
             <div className="payment__details">
                 {/* stripe  */}

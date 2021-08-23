@@ -10,7 +10,7 @@ const stripe=require("stripe")("sk_test_51JKlBXSF0fTfXzQmXiUV901ctKUxyD5yYLKNH6k
 
 //App config
 const app=express();
-
+const PORT=process.env.PORT || 8080;
 
 //middleware
 app.use(cors({origin:true}));
@@ -32,7 +32,7 @@ app.post("/payments/create",async(request,response)=>{
         clientSecret:paymentIntent.client_secret
     })
 })
-
+app.listen(PORT ,console.log(`server is starting at ${PORT}`))
 //listen command
 exports.api=functions.https.onRequest(app);
 
